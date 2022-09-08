@@ -5,13 +5,15 @@ import ImageQuiz from "../../img/quiz.svg";
 import "./index.css";
 
 export const Welcome = () => {
-  const quizState = useContext(QuizContext);
-  
+  const [quizState, dispatch] = useContext(QuizContext);
+
   return (
     <div id="welcome">
       <h1>Seja bem-vindo</h1>
       <p>Clique no botão abaixo para começar</p>
-      <button>Iniciar</button>
+      <button onClick={() => dispatch({ type: "CHANGE_STATE" })}>
+        Iniciar
+      </button>
       <img src={ImageQuiz} alt="Início do Quiz" />
     </div>
   );
