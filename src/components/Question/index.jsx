@@ -19,7 +19,9 @@ export const Question = () => {
       <div id="options-container">
         <p>opcoes</p>
       </div>
-      <button>Continuar</button>
+      <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+        Continuar
+      </button>
     </div>
   );
 };
