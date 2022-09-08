@@ -7,10 +7,21 @@ import "./index.css";
 export const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext);
 
-  const { currentQuestion, questions } = quizState;
+  const { currentQuestion, questions, answerSelected } = quizState;
 
   const question = questions[currentQuestion].question;
   const options = questions[currentQuestion].options;
+  const answer = questions[currentQuestion].answer;
+
+  const handleSelectOption = (option) => {
+    dispatch({
+      type: "CHECK_ANSWER",
+      payload: {
+        answer,
+        option,
+      },
+    });
+  };
 
   return (
     <div id="questions">
@@ -20,12 +31,19 @@ export const Question = () => {
       <h2>{question}</h2>
       <div id="options-container">
         {options.map((option) => (
-          <Option option={option} key={option} />
+          <Option
+            key={option}
+            option={option}
+            answer={answer}
+            selectOption={() => handleSelectOption(option)}
+          />
         ))}
       </div>
-      <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
-        Continuar
-      </button>
+      {answerSelected && (
+        <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+          Continuar
+        </button>
+      )}
     </div>
   );
 };
