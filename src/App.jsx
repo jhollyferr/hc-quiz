@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { Welcome } from "./components/Welcome";
 
 export const App = () => {
   return (
-    <h1>Quiz App</h1>
-  )
-}
+    <div id="app">
+      <h1>Quiz de programação</h1>
+      <Welcome/>
+    </div>
+  );
+};
