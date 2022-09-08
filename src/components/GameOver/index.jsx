@@ -6,13 +6,18 @@ import "./index.css";
 
 export const GameOver = () => {
   const [quizState, dispatch] = useContext(QuizContext);
+
+  const { score, questions } = quizState;
+
   return (
     <div id="gameover">
       <h2>Fim de jogo!</h2>
-      <p>Pontuação: x</p>
-      <p>Você acertou y de x perguntas.</p>
+      <p>Pontuação: {score}</p>
+      <p>
+        Você acertou {score} de {questions.length}{" "}
+      </p>
       <img src={WellDoneImage} alt="Fim do Quiz" />
-      <button>Reiniciar</button>
+      <button onClick={() => dispatch({ type: "NEW_GAME" })}>Reiniciar</button>
     </div>
   );
 };
